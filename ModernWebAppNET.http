@@ -1,0 +1,6 @@
+@ModernWebAppNET_HostAddress = http://localhost:5063
+
+GET {{ModernWebAppNET_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
