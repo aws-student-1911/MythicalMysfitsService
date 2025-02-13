@@ -14,7 +14,7 @@ namespace ModernWebAppNET.Controllers
         }
         // GET api/mysfits
         [HttpGet]
-        public async Task<ActionResult<List<Mysfit>>> Get([FromQuery] string filter, [FromQuery] string value)
+        public async Task<ActionResult<List<Mysfit>>> Get([FromQuery] string? filter, [FromQuery] string? value)
         {
             var mysfits = new List<Mysfit>();
             if (String.IsNullOrEmpty(filter) && String.IsNullOrEmpty(value))
