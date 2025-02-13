@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ModernWebAppNET.Controllers
 {
@@ -13,16 +14,16 @@ namespace ModernWebAppNET.Controllers
         }
         // GET api/mysfits
         [HttpGet]
-        public async Task<ActionResult<List<Mysfit>>> Get([FromQuery]FilterRequest filter)
+        public async Task<ActionResult<List<Mysfit>>> Get([FromQuery] string filter, [FromQuery] string value)
         {
             var mysfits = new List<Mysfit>();
-            if (String.IsNullOrEmpty(filter.filter) && String.IsNullOrEmpty(filter.value))
+            if (String.IsNullOrEmpty(filter) && String.IsNullOrEmpty(value))
             {
                 mysfits = await _mysfitsService.GetMysfits();
             }
             else
             {
-                mysfits = await _mysfitsService.GetMysfitsWithFilter(filter);
+                mysfits = await _mysfitsService.GetMysfitsWithFilter(new FilterRequest { filter = filter, value = value});
             }
             return new JsonResult(new { mysfits = mysfits });
         }
